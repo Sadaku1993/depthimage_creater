@@ -3,6 +3,9 @@ By integration the data of LiDAR and Depth Camera, create Depth Image for Depth 
 
 ## Reauirement
 - ROS (kinetic)
+- tensorflow
+- [tensorflow_object_detection](https://github.com/Sadaku1993/tensorflow_object_detection_ros)
+- [amsl_recog_msgs](https://github.com/Sadaku1993/amsl_recog_msgs)
 
 ## How to Use
 
