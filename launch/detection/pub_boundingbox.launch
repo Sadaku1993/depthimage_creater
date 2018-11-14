@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="depthimage_creater" type="pub_boundingbox" name="pub_boundingbox_0">
+        <remap from="/objectinfo"   to="/iou/0/tf" />
+        <remap from="/bbox"         to="/bbox/0" />
+    </node>
+    <node pkg="depthimage_creater" type="pub_boundingbox" name="pub_boundingbox_1">
+        <remap from="/objectinfo"   to="/iou/1/tf" />
+        <remap from="/bbox"         to="/bbox/1" />
+    </node>
+    <node pkg="depthimage_creater" type="pub_boundingbox" name="pub_boundingbox_2">
+        <remap from="/objectinfo"   to="/iou/2/tf" />
+        <remap from="/bbox"         to="/bbox/2" />
+    </node>
+    <node pkg="depthimage_creater" type="pub_boundingbox" name="pub_boundingbox_3">
+        <remap from="/objectinfo"   to="/iou/3/tf" />
+        <remap from="/bbox"         to="/bbox/3" />
+    </node>
+    <node pkg="depthimage_creater" type="pub_boundingbox" name="pub_boundingbox_4">
+        <remap from="/objectinfo"   to="/iou/4/tf" />
+        <remap from="/bbox"         to="/bbox/4" />
+    </node>
+</launch>

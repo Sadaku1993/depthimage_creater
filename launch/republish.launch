@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<launch>
+    <node name="republish0" type="republish" pkg="image_transport" output="screen"
+        args="compressed in:=/camera0/color/image_raw raw out:=/camera0/color/image_raw/republish" />
+    <node name="republish1" type="republish" pkg="image_transport" output="screen"
+        args="compressed in:=/camera1/color/image_raw raw out:=/camera1/color/image_raw/republish" />
+    <node name="republish2" type="republish" pkg="image_transport" output="screen"
+        args="compressed in:=/camera2/color/image_raw raw out:=/camera2/color/image_raw/republish" />
+    <node name="republish3" type="republish" pkg="image_transport" output="screen"
+        args="compressed in:=/camera3/color/image_raw raw out:=/camera3/color/image_raw/republish" />
+    <node name="republish4" type="republish" pkg="image_transport" output="screen"
+        args="compressed in:=/camera4/color/image_raw raw out:=/camera4/color/image_raw/republish" />
+</launch>

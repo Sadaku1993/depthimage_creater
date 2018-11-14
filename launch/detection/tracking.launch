@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="depthimage_creater" type="cluster_position" name="cluster_position">
+        <remap from="/objectinfo" to="/cluster/objectinfo/pickup" />
+    </node>
+    
+    <arg name="increse" default="true" />
+	<arg name="static" default="false" />
+	<arg name="same" default="0.8" />
+	<arg name="erase" default="0.15" />
+	<arg name="sigma_p" default="100.0" />
+	<arg name="sigma_r" default="0.01" />
+	<arg name="frame" default="/centerlaser" />
+	<node pkg="kf_tracking" type="test_kf_tracking" name="test_kf_tracking">
+        <remap from="/human_recognition/positive_position" to="cluster_position" />
+        <remap from="/objectinfo" to="/iou/tf" />
+        <param name="flagIncrese" value="$(arg increse)" />
+		<param name="flagStatic" value="$(arg static)" />
+		<param name="thresholdSame" value="$(arg same)" />
+		<param name="thresholdErase" value="$(arg erase)" />
+		<param name="sigma_p" value="$(arg sigma_p)" />
+		<param name="sigma_r" value="$(arg sigma_r)" />
+		<param name="frameID" value="$(arg frame)" />
+    </node>
+
+    <node pkg="depthimage_creater" type="transform" name="tracker_transform">
+        <remap from="/objectinfo" to="/objectinfo/tracker" />
+        <remap from="/objectinfo/tf" to="/objectinfo/tracker/tf" />
+        <param name="target_frame" type="string" value="centerlaser" />
+        <param name="source_frame" type="string" value="map" />
+    </node>
+
+    <node pkg="depthimage_creater" type="tracker_integrater.py" name="tracker_integrater" output="screen"/>
+
+    <node pkg="depthimage_creater" type="pub_boundingbox" name="pub_boundingbox_tracker">
+        <remap from="/objectinfo"   to="/integrate" />
+        <remap from="/bbox"         to="/bbox/integrate" />
+    </node>
+
+    <node pkg="depthimage_creater" type="remove_cluster" name="remove_cluster" />
+
+</launch>

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="depthimage_creater" type="outlier_removal" name="outlier_removal" output="screen">
+        <param name="load_path"     type="string" value="$(find depthimage_creater)/map"/>
+        <param name="save_path"     type="string" value="$(find depthimage_creater)/map"/>
+        <param name="pcd_file"      type="string" value="sadyne_dense_normal.pcd" />
+        <param name="output_file"   type="string" value="sadyne_dense_normal_outlier_removal.pcd" />
+        <param name="mean_K"        type="double" value="50" />
+        <param name="std_dev_mul"   type="double" value="1.0"/>
+    </node>
+</launch>

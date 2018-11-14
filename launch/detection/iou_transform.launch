@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="depthimage_creater" type="cluster_transform" name="iou_transform_0">
+        <remap from="/objectinfo"       to="/iou/0" />
+        <remap from="/objectinfo/tf"    to="/iou/0/tf" />
+        <remap from="/transform"        to="/camera0/inverse" />
+        <remap from="/cloud_vis"        to="/cloud_vis/iou/0" />
+        <param name="target_frame"      type="string"   value="centerlaser" />
+        <param name="source_frame"      type="string"   value="camera0/camera_link" />
+    </node>
+
+    <node pkg="depthimage_creater" type="cluster_transform" name="iou_transform_1">
+        <remap from="/objectinfo"       to="/iou/1" />
+        <remap from="/objectinfo/tf"    to="/iou/1/tf" />
+        <remap from="/transform"        to="/camera1/inverse" />
+        <remap from="/cloud_vis"        to="/cloud_vis/iou/1" />
+        <param name="target_frame"      type="string"   value="centerlaser" />
+        <param name="source_frame"      type="string"   value="camera1/camera_link" />
+    </node>
+    
+    <node pkg="depthimage_creater" type="cluster_transform" name="iou_transform_2">
+        <remap from="/objectinfo"       to="/iou/2" />
+        <remap from="/objectinfo/tf"    to="/iou/2/tf" />
+        <remap from="/transform"        to="/camera2/inverse" />
+        <remap from="/cloud_vis"        to="/cloud_vis/iou/2" />
+        <param name="target_frame"      type="string"   value="centerlaser" />
+        <param name="source_frame"      type="string"   value="camera2/camera_link" />
+    </node>
+    
+    <node pkg="depthimage_creater" type="cluster_transform" name="iou_transform_3">
+        <remap from="/objectinfo"       to="/iou/3" />
+        <remap from="/objectinfo/tf"    to="/iou/3/tf" />
+        <remap from="/transform"        to="/camera3/inverse" />
+        <remap from="/cloud_vis"        to="/cloud_vis/iou/3" />
+        <param name="target_frame"      type="string"   value="centerlaser" />
+        <param name="source_frame"      type="string"   value="camera3/camera_link" />
+    </node>
+    
+    <node pkg="depthimage_creater" type="cluster_transform" name="iou_transform_4">
+        <remap from="/objectinfo"       to="/iou/4" />
+        <remap from="/objectinfo/tf"    to="/iou/4/tf" />
+        <remap from="/transform"        to="/camera4/inverse" />
+        <remap from="/cloud_vis"        to="/cloud_vis/iou/4" />
+        <param name="target_frame"      type="string"   value="centerlaser" />
+        <param name="source_frame"      type="string"   value="camera4/camera_link" />
+    </node>
+
+    
+</launch>

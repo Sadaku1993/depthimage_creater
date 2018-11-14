@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--cameraの内部パラメータをPublish-->
+<launch>
+
+    <node pkg="depthimage_creater" type="camera_info" name="realsense_0" output="screen">
+        <rosparam command="load" file="$(find depthimage_creater)/yaml/realsense0.yaml" />
+        <remap from="/camera_info" to="/camera0/color/camera_info"/>
+    </node>
+
+    <node pkg="depthimage_creater" type="camera_info" name="realsense_1" output="screen">
+        <rosparam command="load" file="$(find depthimage_creater)/yaml/realsense1.yaml" />
+        <remap from="/camera_info" to="/camera1/color/camera_info"/>
+    </node>
+
+    <node pkg="depthimage_creater" type="camera_info" name="realsense_2" output="screen">
+        <rosparam command="load" file="$(find depthimage_creater)/yaml/realsense2.yaml" />
+        <remap from="/camera_info" to="/camera2/color/camera_info"/>
+    </node>
+
+    <node pkg="depthimage_creater" type="camera_info" name="realsense_3" output="screen">
+        <rosparam command="load" file="$(find depthimage_creater)/yaml/realsense3.yaml" />
+        <remap from="/camera_info" to="/camera3/color/camera_info"/>
+    </node>
+
+    <node pkg="depthimage_creater" type="camera_info" name="realsense_4" output="screen">
+        <rosparam command="load" file="$(find depthimage_creater)/yaml/realsense4.yaml" />
+        <remap from="/camera_info" to="/camera4/color/camera_info"/>
+    </node>
+
+</launch>

@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="depthimage_creater" type="plane_segmentation" name="plane_segmentation" output="screen">
+        <remap from="/cloud" to="/rm_ground" />
+    </node>
+</launch>

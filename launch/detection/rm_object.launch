@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="depthimage_creater" type="rm_object" name="rm_object0">
+        <remap from="/image"        to="/zed0/left/image_rect_color/republish"/>
+        <remap from="/camera_info"  to="/zed0/left/camera_info"/>
+        <remap from="/cloud"        to="/sq_lidar/points/center/tf"/>
+        <remap from="/objectinfo"   to="/objectinfo/0" />
+        <remap from="/rm_object"    to="/rm_object/0" />
+    </node>
+    <node pkg="depthimage_creater" type="rm_object" name="rm_object1">
+        <remap from="/image"        to="/zed1/left/image_rect_color/republish"/>
+        <remap from="/camera_info"  to="/zed1/left/camera_info"/>
+        <remap from="/cloud"        to="/sq_lidar/points/right/tf"/>
+        <remap from="/objectinfo"   to="/objectinfo/1" />
+        <remap from="/rm_object"    to="/rm_object/1" />
+    </node>
+    <node pkg="depthimage_creater" type="rm_object" name="rm_object2">
+        <remap from="/image"        to="/zed2/left/image_rect_color/republish"/>
+        <remap from="/camera_info"  to="/zed2/left/camera_info"/>
+        <remap from="/cloud"        to="/sq_lidar/points/left/tf"/>
+        <remap from="/objectinfo"   to="/objectinfo/2" />
+        <remap from="/rm_object"    to="/rm_object/2" />
+    </node>
+
+</launch>

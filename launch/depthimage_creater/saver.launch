@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!--データを保存-->
+<launch>
+    <node pkg="depthimage_creater" type="data_saver" name="data_saver_realsense0" output="screen">
+        <remap from="/image" to="/camera0/color/image_raw/republish"/>
+        <remap from="/cloud" to="/cloud/lcl"/>
+        <remap from="/odom" to="/odom"/>
+        <param name="target_frame" type="string" value="/map" />
+        <param name="source_frame" type="string" value="/centerlaser" />
+        <param name="threshold" type="double" value="2.0" />
+        <param name="device" type="string" value="realsense0" />
+    </node>
+</launch>

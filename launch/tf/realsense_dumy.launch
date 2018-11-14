@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<launch>
+
+    <node pkg="tf" type="static_transform_publisher" name="sq_lidar2realsense0" args="0.111393 -0.0103084 -0.0137764 0.00335265 -1.11099e-05 -0.00655574 centerlaser camera0/camera_link 100" />
+    <node pkg="tf" type="static_transform_publisher" name="sq_lidar2realsense1" args="0.0399965 0.213967 -0.00179312 1.25567 0.000184734 0.0261022 centerlaser camera1/camera_link 100" />
+    <node pkg="tf" type="static_transform_publisher" name="sq_lidar2realsense2" args="-0.185499 0.140729 0.00312251 2.51929 -0.000860409 -0.0140042 centerlaser camera2/camera_link 100" />
+    <node pkg="tf" type="static_transform_publisher" name="sq_lidar2realsense3" args="-0.182591 -0.135331 -0.0219731 -2.51103 -0.000171829 -0.00843253 centerlaser camera3/camera_link 100" />
+    <node pkg="tf" type="static_transform_publisher" name="sq_lidar2realsense4" args="0.0428249 -0.177005 0.000247829 -1.2545 -0.00033547 0.0147243 centerlaser camera4/camera_link 100" />
+
+    <node pkg="tf" type="static_transform_publisher" name="camera0_link2camera0_color_frame" args="0.000 0.015 0.000 0.001 -0.001 -0.017 camera0/camera_link camera0/camera_color_frame 100"/>
+    <node pkg="tf" type="static_transform_publisher" name="camera1_link2camera1_color_frame" args="0.002 0.015 0.000 0.002 -0.002  0.005 camera1/camera_link camera1/camera_color_frame 100"/>
+    <node pkg="tf" type="static_transform_publisher" name="camera2_link2camera2_color_frame" args="0.000 0.015 0.000 0.008 -0.022  0.003 camera2/camera_link camera2/camera_color_frame 100"/>
+    <node pkg="tf" type="static_transform_publisher" name="camera3_link2camera3_color_frame" args="0.000 0.015 0.000 0.004 -0.002 -0.003 camera3/camera_link camera3/camera_color_frame 100"/>
+    <node pkg="tf" type="static_transform_publisher" name="camera4_link2camera4_color_frame" args="0.000 0.015 0.000 0.007  0.000 -0.015 camera4/camera_link camera4/camera_color_frame 100"/>
+
+    <node pkg="tf" type="static_transform_publisher" name="camera0_color_frame2camera0_color_optical_frame" args="0.000 0.000 0.000 -1.571 0.000 -1.571 camera0/camera_color_frame camera0/camera_color_optical_frame 100"/>
+    <node pkg="tf" type="static_transform_publisher" name="camera1_color_frame2camera1_color_optical_frame" args="0.000 0.000 0.000 -1.571 0.000 -1.571 camera1/camera_color_frame camera1/camera_color_optical_frame 100"/>
+    <node pkg="tf" type="static_transform_publisher" name="camera2_color_frame2camera2_color_optical_frame" args="0.000 0.000 0.000 -1.571 0.000 -1.571 camera2/camera_color_frame camera2/camera_color_optical_frame 100"/>
+    <node pkg="tf" type="static_transform_publisher" name="camera3_color_frame2camera3_color_optical_frame" args="0.000 0.000 0.000 -1.571 0.000 -1.571 camera3/camera_color_frame camera3/camera_color_optical_frame 100"/>
+    <node pkg="tf" type="static_transform_publisher" name="camera4_color_frame2camera4_color_optical_frame" args="0.000 0.000 0.000 -1.571 0.000 -1.571 camera4/camera_color_frame camera4/camera_color_optical_frame 100"/>
+
+</launch>

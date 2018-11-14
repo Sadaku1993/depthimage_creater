@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!--Mapに対してnoarmal estimationをかけ直す-->
+<launch>
+    <node pkg="depthimage_creater" type="normal_estimation_for_map" name="normal_estimation_for_map" output="screen">
+        <param name="load_path" type="string" value="$(find depthimage_creater)/map"/>
+        <param name="save_path" type="string" value="$(find depthimage_creater)/map"/>
+        <param name="pcd_file" type="string" value="sadyne_dense_meshsample.pcd" />
+        <param name="output_file" type="string" value="sadyne_dense_normal_meshsample.pcd" />
+        <param name="search_radius" type="double" value="0.6" />
+    </node>
+</launch>

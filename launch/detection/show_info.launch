@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="depthimage_creater" type="showinfo" name="showinfo" output="screen">
+        <remap from="/iou" to="/iou" />
+    </node>
+</launch>

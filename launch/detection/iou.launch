@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="depthimage_creater" type="iou" name="iou0">
+        <remap from="/image"            to="/camera0/color/image_raw/republish"/>
+        <remap from="/camera_info"      to="/camera0/color/camera_info"/>
+        <remap from="/lidar/cluster"    to="/objectinfo0/tf"/>
+        <remap from="/camera/cluster"   to="/objectinfo0"/>
+        <remap from="/iou"              to="/iou/0"/>
+        <remap from="/image/output"     to="/image/output/0" />
+        <remap from="/bbox/iou"         to="/bbox/iou/0" />
+    </node>
+
+    <node pkg="depthimage_creater" type="iou" name="iou1">
+        <remap from="/image"            to="/camera1/color/image_raw/republish"/>
+        <remap from="/camera_info"      to="/camera1/color/camera_info"/>
+        <remap from="/lidar/cluster"    to="/objectinfo1/tf"/>
+        <remap from="/camera/cluster"   to="/objectinfo1"/>
+        <remap from="/iou"              to="/iou/1"/>
+        <remap from="/image/output"     to="/image/output/1" />
+        <remap from="/bbox/iou"         to="/bbox/iou/1" />
+    </node>
+
+    <node pkg="depthimage_creater" type="iou" name="iou2">
+        <remap from="/image"            to="/camera2/color/image_raw/republish"/>
+        <remap from="/camera_info"      to="/camera2/color/camera_info"/>
+        <remap from="/lidar/cluster"    to="/objectinfo2/tf"/>
+        <remap from="/camera/cluster"   to="/objectinfo2"/>
+        <remap from="/iou"              to="/iou/2"/>
+        <remap from="/image/output"     to="/image/output/2" />
+        <remap from="/bbox/iou"         to="/bbox/iou/2" />
+    </node>
+
+    <node pkg="depthimage_creater" type="iou" name="iou3">
+        <remap from="/image"            to="/camera3/color/image_raw/republish"/>
+        <remap from="/camera_info"      to="/camera3/color/camera_info"/>
+        <remap from="/lidar/cluster"    to="/objectinfo3/tf"/>
+        <remap from="/camera/cluster"   to="/objectinfo3"/>
+        <remap from="/iou"              to="/iou/3"/>
+        <remap from="/image/output"     to="/image/output/3" />
+        <remap from="/bbox/iou"         to="/bbox/iou/3" />
+    </node>
+
+    <node pkg="depthimage_creater" type="iou" name="iou4">
+        <remap from="/image"            to="/camera4/color/image_raw/republish"/>
+        <remap from="/camera_info"      to="/camera4/color/camera_info"/>
+        <remap from="/lidar/cluster"    to="/objectinfo4/tf"/>
+        <remap from="/camera/cluster"   to="/objectinfo4"/>
+        <remap from="/iou"              to="/iou/4"/>
+        <remap from="/image/output"     to="/image/output/4" />
+        <remap from="/bbox/iou"         to="/bbox/iou/4" />
+    </node>
+</launch>

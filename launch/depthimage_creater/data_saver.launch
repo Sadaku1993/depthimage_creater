@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<launch>
+
+    <!--rosparam-->
+    <!--param name="use_sim_time" value="true" /-->
+   
+    <!--tf-->
+    <!--include file="$(find depthimage_creater)/launch/tf/sq2_realsense.launch" /-->
+    <include file="$(find depthimage_creater)/launch/tf/baselink2laser.launch" />
+
+    <!--Localization-->
+    <include file="$(find kari_localization)/launch/add_height.launch"/>
+    <include file="$(find ekf)/launch/EKF.launch"/>
+    <!--include file="$(find kari_complement)/launch/add_height.launch"/--> <!--add_height.launchにはバグがあるから別で起動すること-->
+
+    <!--Republish-->
+    <include file="$(find depthimage_creater)/launch/republish.launch" />
+
+    <!--show map-->
+    <node pkg="pcl_ros" type="pcd_to_pointcloud" name="pcd_to_pointcloud" args="$(find depthimage_creater)/map/sadyne_dense_normal.pcd _frame_id:=/map" />
+    <!--node pkg="pcl_ros" type="pcd_to_pointcloud" name="pcd_to_pointcloud" args="$(find depthimage_creater)/map/sadyne_dense_kai_normal_downsample.pcd _frame_id:=/map" /-->
+
+
+    <!--data saver-->
+    <include file="$(find depthimage_creater)/launch/depthimage_creater/saver.launch"/>
+
+    <!--rviz-->
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find depthimage_creater)/config/data_saver.rviz"/>
+
+    <!--rosbag play-->
+    <!--include file="$(find depthimage_creater)/launch/depthimage_creater/bag.launch"/-->
+
+
+
+</launch>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<launch>
+    <node pkg="tf" type="static_transform_publisher" name="zed0_dumy_tf" args="0.0 0.06 0 0 0 0 /zed0/zed_center /zed0/zed_left_camera 100"/>
+    <node pkg="tf" type="static_transform_publisher" name="zed1_dumy_tf" args="0.0 0.06 0 0 0 0 /zed1/zed_center /zed1/zed_left_camera 100"/>
+    <node pkg="tf" type="static_transform_publisher" name="zed2_dumy_tf" args="0.0 0.06 0 0 0 0 /zed2/zed_center /zed2/zed_left_camera 100"/>
+</launch>

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<launch>
+    <!--Transform Publisher-->
+    <node pkg="sensor_fusion" type="transform_publisher" name="inverse_camera0">
+        <param name="target_frame" type="string" value="centerlaser" />
+        <param name="source_frame" type="string" value="camera0/camera_link" />
+        <remap from="/transform"   to="/camera0/inverse" />
+    </node>
+
+    <node pkg="sensor_fusion" type="transform_publisher" name="inverse_camera1">
+        <param name="target_frame" type="string" value="centerlaser" />
+        <param name="source_frame" type="string" value="camera1/camera_link" />
+        <remap from="/transform"   to="/camera1/inverse" />
+    </node>
+    
+    <node pkg="sensor_fusion" type="transform_publisher" name="inverse_camera2">
+        <param name="target_frame" type="string" value="centerlaser" />
+        <param name="source_frame" type="string" value="camera2/camera_link" />
+        <remap from="/transform"   to="/camera2/inverse" />
+    </node>
+    
+    <node pkg="sensor_fusion" type="transform_publisher" name="inverse_camera3">
+        <param name="target_frame" type="string" value="centerlaser" />
+        <param name="source_frame" type="string" value="camera3/camera_link" />
+        <remap from="/transform"   to="/camera3/inverse" />
+    </node>
+    
+    <node pkg="sensor_fusion" type="transform_publisher" name="inverse_camera4">
+        <param name="target_frame" type="string" value="centerlaser" />
+        <param name="source_frame" type="string" value="camera4/camera_link" />
+        <remap from="/transform"   to="/camera4/inverse" />
+    </node>
+
+
+</launch>

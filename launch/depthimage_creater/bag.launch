@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+    <!--rosbag play-->
+    <node pkg="rosbag" type="play" name="play" args="/home/amsl/depthimage_creater_20181013.bag -s 10 --clock" />
+    <!--node pkg="rosbag" type="play" name="play" args="/home/amsl/depthimage_creater_20181024.bag" /-->
+</launch>

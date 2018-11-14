@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--データを保存-->
+<launch>
+    <!--tf-->
+    <include file="$(find depthimage_creater)/launch/tf/realsense_dumy.launch" />
+ 
+    <!--show map-->
+    <node pkg="pcl_ros" type="pcd_to_pointcloud" name="pcd_to_pointcloud" args="$(find depthimage_creater)/map/sadyne_dense_normal_upsample.pcd _frame_id:=/map" />
+
+    <!--depth image creater-->
+    <node pkg="depthimage_creater" type="depthimage_creater_main" name="depthimage_creater_main" output="screen">
+        <param name="map_path" type="string" value="$(find depthimage_creater)/map/sadyne_dense_normal_meshsample.pcd" />
+        <param name="device" type="string" value="realsense0" />
+        <param name="map_frame" type="string" value="map" />
+        <param name="lidar_frame" type="string" value="centerlaser" />
+        <param name="camera_frame" type="string" value="camera0/camera_color_frame" />
+        <param name="normal_serach_radius" type="double" value="0.6" />
+        <param name="polygon_serach_radius" type="double" value="1.0" />
+        <rosparam command="load" file="$(find depthimage_creater)/yaml/realsense0.yaml"/>
+    </node>
+
+    <!--tf broadcaster-->
+    <node pkg="depthimage_creater" type="tf_broadcaster" name="tf_broadcaster">
+        <param name="parent_frame" type="string" value="map" />
+        <param name="child_frame" type="string" value="centerlaser" />
+    </node>
+
+    <!--rviz-->
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find depthimage_creater)/config/depthimage_creater_show.rviz"/>
+
+
+</launch>

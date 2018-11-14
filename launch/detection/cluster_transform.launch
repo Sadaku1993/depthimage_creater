@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="depthimage_creater" type="cluster_transform" name="cluster_transform_0">
+        <remap from="/objectinfo"       to="/cluster/objectinfo/pickup" />
+        <remap from="/objectinfo/tf"    to="/objectinfo0/tf" />
+        <remap from="/transform"        to="/camera0/transform" />
+        <remap from="/cloud_vis"        to="/cloud_vis/0" />
+        <param name="target_frame"      type="string"   value="camera0/camera_link" />
+        <param name="source_frame"      type="string"   value="centerlaser" />
+    </node>
+    
+    <node pkg="depthimage_creater" type="cluster_transform" name="cluster_transform_1">
+        <remap from="/objectinfo"       to="/cluster/objectinfo/pickup" />
+        <remap from="/objectinfo/tf"    to="/objectinfo1/tf" />
+        <remap from="/transform"        to="/camera1/transform" />
+        <remap from="/cloud_vis"        to="/cloud_vis/1" />
+        <param name="target_frame"      type="string"   value="camera1/camera_link" />
+        <param name="source_frame"      type="string"   value="centerlaser" />
+    </node>
+    
+    <node pkg="depthimage_creater" type="cluster_transform" name="cluster_transform_2">
+        <remap from="/objectinfo"       to="/cluster/objectinfo/pickup" />
+        <remap from="/objectinfo/tf"    to="/objectinfo2/tf" />
+        <remap from="/transform"        to="/camera2/transform" />
+        <remap from="/cloud_vis"        to="/cloud_vis/2" />
+        <param name="target_frame"      type="string"   value="camera2/camera_link" />
+        <param name="source_frame"      type="string"   value="centerlaser" />
+    </node>
+    
+    <node pkg="depthimage_creater" type="cluster_transform" name="cluster_transform_3">
+        <remap from="/objectinfo"       to="/cluster/objectinfo/pickup" />
+        <remap from="/objectinfo/tf"    to="/objectinfo3/tf" />
+        <remap from="/transform"        to="/camera3/transform" />
+        <remap from="/cloud_vis"        to="/cloud_vis/3" />
+        <param name="target_frame"      type="string"   value="camera3/camera_link" />
+        <param name="source_frame"      type="string"   value="centerlaser" />
+    </node>
+
+    <node pkg="depthimage_creater" type="cluster_transform" name="cluster_transform_4">
+        <remap from="/objectinfo"       to="/cluster/objectinfo/pickup" />
+        <remap from="/objectinfo/tf"    to="/objectinfo4/tf" />
+        <remap from="/transform"        to="/camera4/transform" />
+        <remap from="/cloud_vis"        to="/cloud_vis/4" />
+        <param name="target_frame"      type="string"   value="camera4/camera_link" />
+        <param name="source_frame"      type="string"   value="centerlaser" />
+    </node>
+</launch>

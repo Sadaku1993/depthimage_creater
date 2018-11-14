@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+	<!--Transform PointCloud-->
+    <node pkg="depthimage_creater" type="split_pointcloud" name="split_pointcloud">
+        <remap from="/cloud"    to="/cloud/lcl/bag" />
+        <param name="threshold" type="double" value="1.5" />
+	</node>
+</launch>

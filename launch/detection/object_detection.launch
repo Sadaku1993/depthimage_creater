@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<launch>
+    <!--tf-->
+    <include file="$(find depthimage_creater)/launch/tf/sq2_realsense.launch" />
+    <include file="$(find depthimage_creater)/launch/tf/baselink2laser.launch" />
+    <include file="$(find depthimage_creater)/launch/tf/transform_publisher.launch" />
+    <include file="$(find depthimage_creater)/launch/tf/inverse_publisher.launch" />
+
+    <!--rosbag play-->
+    <!--node pkg="rosbag" type="play" name="play" args="/home/amsl/2018-09-24-18-49-24.bag -l" /-->
+    <node pkg="rosbag" type="play" name="play" args="/home/amsl/depthimage_creater_humandetection_20181010.bag -l" />
+    <!--node pkg="rosbag" type="play" name="play" args="/home/amsl/depthimage_creater_20181010.bag -l" /-->
+    <!--node pkg="rosbag" type="play" name="play" args="/home/amsl/depthimage_creater_20181013.bag -l" /-->
+    <!--node pkg="rosbag" type="play" name="play" args="/home/amsl/depthimage_creater_20181024.bag " /-->
+
+    <!--min max-->
+    <include file="$(find velodyne_height_map)/launch/sq_height_map.launch"/>
+
+    <!--object detection-->
+    <include file="$(find depthimage_creater)/launch/republish.launch" />
+    <include file="$(find tensorflow_object_detection)/launch/realsense.launch" />
+    
+    <!--clustering-->
+    <include file="$(find depthimage_creater)/launch/detection/clustering.launch" />
+    <!--include file="$(find depthimage_creater)/launch/detection/cluster_transform.launch" /-->
+    <include file="$(find depthimage_creater)/launch/detection/cluster_transform_v2.launch" />
+
+    <!--iou-->
+    <include file="$(find depthimage_creater)/launch/detection/iou.launch" />
+    <!--include file="$(find depthimage_creater)/launch/detection/iou_transform.launch" /-->
+    <include file="$(find depthimage_creater)/launch/detection/iou_transform_v2.launch" />
+    <include file="$(find depthimage_creater)/launch/detection/iou_integrater.launch" />
+
+    <!--pubboudingbox-->
+    <include file="$(find depthimage_creater)/launch/detection/pub_boundingbox.launch" />
+
+    <!--complement-->
+    <include file="$(find complement)/launch/complement_pubtf.launch" />
+
+    <!--tracking-->
+    <include file="$(find depthimage_creater)/launch/detection/tracking.launch" />
+
+    <!--rviz-->
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find depthimage_creater)/config/depthimage_creater.rviz"/>
+
+</launch>

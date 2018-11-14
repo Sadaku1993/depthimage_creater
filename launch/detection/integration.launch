@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="depthimage_creater" type="integrate_objectinfo" name="integration" output="screen">
+        <remap from="/image"        to="/zed0/left/image_rect_color/republish" />
+        <remap from="/camera_info"  to="/zed0/left/camera_info" />
+        <remap from="/cluster"      to="/cluster/objectinfo" />
+        <remap from="/object"       to="/objectinfo/0"/>
+    </node>
+</launch>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="depthimage_creater" type="euclidean_clustering" name="euclidean_clustering">
+        <remap from="/cloud"    to="/rm_ground"/>
+    </node>
+
+    <node pkg="depthimage_creater" type="pickup_cluster" name="pickup_cluster"/>
+
+</launch>
