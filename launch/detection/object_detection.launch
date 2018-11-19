@@ -3,8 +3,8 @@
     <!--tf-->
     <include file="$(find depthimage_creater)/launch/tf/sq2_realsense.launch" />
     <include file="$(find depthimage_creater)/launch/tf/baselink2laser.launch" />
-    <include file="$(find depthimage_creater)/launch/tf/transform_publisher.launch" />
-    <include file="$(find depthimage_creater)/launch/tf/inverse_publisher.launch" />
+    <!--include file="$(find depthimage_creater)/launch/tf/transform_publisher.launch" />
+    <include file="$(find depthimage_creater)/launch/tf/inverse_publisher.launch" /-->
 
     <!--rosbag play-->
     <!--node pkg="rosbag" type="play" name="play" args="/home/amsl/2018-09-24-18-49-24.bag -l" /-->
@@ -22,14 +22,12 @@
     
     <!--clustering-->
     <include file="$(find depthimage_creater)/launch/detection/clustering.launch" />
-    <!--include file="$(find depthimage_creater)/launch/detection/cluster_transform.launch" /-->
-    <include file="$(find depthimage_creater)/launch/detection/cluster_transform_v2.launch" />
+    <include file="$(find depthimage_creater)/launch/detection/cluster_transform_v2.launch" /> <!--old version is cluster_transform.launch-->
 
     <!--iou-->
     <include file="$(find depthimage_creater)/launch/detection/iou.launch" />
-    <!--include file="$(find depthimage_creater)/launch/detection/iou_transform.launch" /-->
-    <include file="$(find depthimage_creater)/launch/detection/iou_transform_v2.launch" />
-    <include file="$(find depthimage_creater)/launch/detection/iou_integrater.launch" />
+    <include file="$(find depthimage_creater)/launch/detection/iou_transform_v2.launch" /> <!--old version is iou_transform.launch-->
+    <include file="$(find depthimage_creater)/launch/detection/iou_integrater_v2.launch" /> <!--old version is iou_integrater.launch-->
 
     <!--pubboudingbox-->
     <include file="$(find depthimage_creater)/launch/detection/pub_boundingbox.launch" />

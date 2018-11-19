@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="depthimage_creater" type="iou_integrater" name="iou_integrater">
+        <remap from="/iou0" to="/iou/0/tf" />
+        <remap from="/iou1" to="/iou/1/tf" />
+        <remap from="/iou2" to="/iou/2/tf" />
+        <remap from="/iou3" to="/iou/3/tf" />
+        <remap from="/iou4" to="/iou/4/tf" />
+    </node>
+
+    <!--trackingはmap座標系で行うのでlaser座標系から変換-->
+    <node pkg="depthimage_creater" type="transform" name="iou_transform">
+        <remap from="/objectinfo"       to="/iou" />
+        <remap from="/objectinfo/tf"    to="/iou/tf" />
+        <param name="target_frame"      type="string"   value="map" />
+        <param name="source_frame"      type="string"   value="centerlaser" />
+    </node>
+
+    <!--trackerのiouはmap座標系になっているのでlaser座標系に戻す-->
+    <!--node pkg="depthimage_creater" type="transform" name="iou_inverse">
+        <remap from="/objectinfo"       to="/objectinfo/tracker" />
+        <remap from="/objectinfo/tf"    to="/objectinfo/tracker/tf" />
+        <param name="target_frame"      type="string"   value="centerlaser" />
+        <param name="source_frame"      type="string"   value="map" />
+    </node-->
+</launch>
