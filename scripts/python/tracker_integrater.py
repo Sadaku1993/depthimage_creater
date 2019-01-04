@@ -14,6 +14,7 @@ class Integrater(object):
         self.cluster_sub = rospy.Subscriber("/cluster/objectinfo/pickup", ObjectInfoArray, self.clusterCallback, queue_size=10)
         self.integrate_pub = rospy.Publisher("/integrate", ObjectInfoArray, queue_size=10)
         self.tracker_flag = False
+        self.empty = ObjectInfoArray()
 
     def trackerCallback(self, msg):
         self.tracker = msg
@@ -24,17 +25,20 @@ class Integrater(object):
     def clusterCallback(self, msg):
         # print('cluster callback')
         self.cluster = msg
-        
+
+        self.empty.header.frame_id = self.cluster.header.frame_id
+        self.empty.header.stamp = self.cluster.header.stamp
+
         # if not self.tracker_flag or len(self.tracker.object_array) < 1 or len(self.cluster.object_array) < 1:
         if not self.tracker_flag:
             print('wait tracker result')
-            self.integrate_pub.publish(self.cluster)
+            self.integrate_pub.publish(self.empty)
         elif len(self.tracker.object_array) < 1:
             print("tracker is None")
-            self.integrate_pub.publish(self.cluster)
+            self.integrate_pub.publish(self.empty)
         elif len(self.cluster.object_array) < 1:
             print("cluster is None")
-            self.integrate_pub.publish(self.cluster)
+            self.integrate_pub.publish(self.empty)
         else:
             # print('tracker' , self.tracker.header.frame_id)
             # for i in range(len(self.tracker.object_array)):
@@ -43,7 +47,6 @@ class Integrater(object):
             # print('cluster', self.cluster.header.frame_id)
             # for i in range(len(self.cluster.object_array)):
             #     print("x:%f y:%f" % (self.cluster.object_array[i].pose.position.x, self.cluster.object_array[i].pose.position.y))
-        
             self.integration()
 
     def integration(self):
@@ -83,7 +86,6 @@ class Integrater(object):
 
         pickup = ObjectInfoArray()
         pickup.header.frame_id = self.cluster.header.frame_id
-        # pickup.header.stamp = rospy.Time.now()
         pickup.header.stamp = self.cluster.header.stamp
 
         for data in integrate.object_array:

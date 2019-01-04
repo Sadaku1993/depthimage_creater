@@ -38,13 +38,12 @@ class RemoveCluster{
 
 RemoveCluster::RemoveCluster()
     : nh("~"),
-      pc_sub(nh, "/cloud/lcl", 10),
-      cluster_sub(nh, "/integrate", 10),
-      sync(MySyncPolicy(10), pc_sub, cluster_sub)
+      pc_sub(nh, "/cloud/lcl", 100),
+      cluster_sub(nh, "/integrate", 100),
+      sync(MySyncPolicy(100), pc_sub, cluster_sub)
 {
     sync.registerCallback(boost::bind(&RemoveCluster::callback,this, _1, _2));
     pub = nh.advertise<sensor_msgs::PointCloud2>("/cluster/human/removed", 1);
-
 }
 
 

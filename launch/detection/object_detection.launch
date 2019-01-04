@@ -8,10 +8,11 @@
 
     <!--rosbag play-->
     <!--node pkg="rosbag" type="play" name="play" args="/home/amsl/2018-09-24-18-49-24.bag -l" /-->
-    <node pkg="rosbag" type="play" name="play" args="/home/amsl/depthimage_creater_humandetection_20181010.bag -l" />
     <!--node pkg="rosbag" type="play" name="play" args="/home/amsl/depthimage_creater_20181010.bag -l" /-->
     <!--node pkg="rosbag" type="play" name="play" args="/home/amsl/depthimage_creater_20181013.bag -l" /-->
     <!--node pkg="rosbag" type="play" name="play" args="/home/amsl/depthimage_creater_20181024.bag " /-->
+    <!--node pkg="rosbag" type="play" name="play" args="/home/amsl/depthimage_creater_humandetection_20181010.bag -l" /-->
+    <node pkg="rosbag" type="play" name="play" args="/home/amsl/depthimage_creater_indoor_20190104.bag -l" />
 
     <!--min max-->
     <include file="$(find velodyne_height_map)/launch/sq_height_map.launch"/>
