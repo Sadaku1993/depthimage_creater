@@ -265,6 +265,11 @@ target_link_libraries(normal_estimation_for_map
     ${OpenCV_LIBRARIES}
 )
 
+add_executable(normal_estimation_for_online src/detection/normal_estimation_for_online.cpp)
+target_link_libraries(normal_estimation_for_online
+    ${catkin_LIBRARIES}
+    ${PCL_LIBRRIES}
+)
 
 # depthimage_creater
 add_executable(camera_info src/depthimage_creater/camera_info.cpp)
