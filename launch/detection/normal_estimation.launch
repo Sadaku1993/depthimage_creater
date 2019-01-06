@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="depthimage_creater" type="normal_estimation_for_online" name="normal_estimation_for_online">
+        <remap from="/cloud" to="/cluster/human/removed" />
+        <param name="search_radius" type="double" value="0.30" />
+    </node>
+</launch>
