@@ -24,7 +24,6 @@
 #include <opencv2/opencv.hpp>
 #include <cv_bridge/cv_bridge.h>
 
-
 #include <depthimage_creater/quicksort.h>
 #include <depthimage_creater/projection.h>
 
@@ -334,7 +333,7 @@ void DepthImageCreater<T_p, T_c, T_ptr>::depthimage_creater(cv::Mat image,
     cv::Mat output_image = image.clone();
     T_ptr reference_cloud(new T_c);
 
-    pj.projection(sort_cloud, image, cinfo, reference_cloud, output_image);
+    pj.projection(sort_cloud, image, cinfo, reference_cloud, output_image, distance_name);
 
     sensor_msgs::PointCloud2 pc2;
     pcl::toROSMsg(*reference_cloud, pc2);

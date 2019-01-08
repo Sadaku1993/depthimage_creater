@@ -7,6 +7,9 @@
 #include <image_transport/image_transport.h>
 #include <image_geometry/pinhole_camera_model.h>
 
+#include <fstream>
+using namespace std;
+
 template<typename T_p, typename T_c, typename T_ptr>
 class Projection{
     private:
@@ -16,7 +19,8 @@ class Projection{
                 cv::Mat image, 
                 sensor_msgs::CameraInfo cinfo,
                 T_ptr &output_cloud,
-                cv::Mat &coutput_image);
+                cv::Mat &coutput_image,
+                std::string distance_name);
 };
 
 template<typename T_p, typename T_c, typename T_ptr>
@@ -150,6 +154,17 @@ void Projection<T_p, T_c, T_ptr>::projection(T_ptr cloud,
             }
         }
     }
+
+    // Distanceを保存
+    std::ofstream ofs(distance_name, std::ios::trunc);
+    for(int y=0;y<image.rows; y++){
+      for(int x=0;x<image.cols; x++){
+        if(init[y][x]) ofs << distance[y][x] << ",";
+        else ofs << 0.0 << ",";
+      }
+      ofs << std::endl;
+    }
+    ofs.close();
 
     *output_cloud += *reference_cloud;
 }
