@@ -51,8 +51,10 @@ void Projection<T_p, T_c, T_ptr>::projection(T_ptr cloud,
     int col = image.cols;
 
     double distance[row][col];
+    double info[row][col][3]; // x, y, z, distance
     bool init[row][col];
     memset(&distance, 0    , row*col);
+    memset(&info,     0    , row*col*3);
     memset(&init,     false, row*col);
 
 #pragma omp parallel for
@@ -72,11 +74,20 @@ void Projection<T_p, T_c, T_ptr>::projection(T_ptr cloud,
                 for(int j=-2;j<=2;j++){
                     if(0<=x+i && x+i<col && 0<=y+j && y+j<row){
                         if(!init[y+j][x+i]){
-                            distance[y+j][x+i] = range; 
+                            distance[y+j][x+i] = range;
+                            info[y+j][x+i][0] = x;
+                            info[y+j][x+i][1] = y;
+                            info[y+j][x+i][2] = z;
+                            info[y+j][x+i][3] = range;
+
                             init[y+j][x+i] = true;
                         }
                         else if(range<distance[y+j][x+i]){
                             distance[y+j][x+i] = range;
+                            info[y+j][x+i][0] = x;
+                            info[y+j][x+i][1] = y;
+                            info[y+j][x+i][2] = z;
+                            info[y+j][x+i][3] = range;
                         }
                     }
                 }
@@ -86,11 +97,20 @@ void Projection<T_p, T_c, T_ptr>::projection(T_ptr cloud,
                 for(int j=-1;j<=1;j++){
                     if(0<=x+i && x+i<col && 0<=y+j && y+j<row){
                         if(!init[y+j][x+i]){
-                            distance[y+j][x+i] = range; 
+                            distance[y+j][x+i] = range;
+                            info[y+j][x+i][0] = x;
+                            info[y+j][x+i][1] = y;
+                            info[y+j][x+i][2] = z;
+                            info[y+j][x+i][3] = range;
+
                             init[y+j][x+i] = true;
                         }
                         else if(range<distance[y+j][x+i]){
                             distance[y+j][x+i] = range;
+                            info[y+j][x+i][0] = x;
+                            info[y+j][x+i][1] = y;
+                            info[y+j][x+i][2] = z;
+                            info[y+j][x+i][3] = range;
                         }
                     }
                 }
