@@ -28,7 +28,8 @@ void Projection<T_p, T_c, T_ptr>::projection(T_ptr cloud,
         cv::Mat image,
         sensor_msgs::CameraInfo cinfo,
         T_ptr &output_cloud,
-        cv::Mat &output_image)
+        cv::Mat &output_image,
+        std::string distance_name)
 {
     // camera info
     image_geometry::PinholeCameraModel cam_model;
