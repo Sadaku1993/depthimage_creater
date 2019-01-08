@@ -86,7 +86,7 @@ class DepthImageCreater{
         void depthimage_creater(cv::Mat image, 
                                 T_ptr map, 
                                 T_ptr cloud, 
-                                std::string depthimage_name
+                                std::string depthimage_name,
                                 std::string distance_name);
         void show_transform(std::string parent_frame,
                             std::string child_frame, 
