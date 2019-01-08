@@ -259,7 +259,7 @@ void DepthImageCreater<T_p, T_c, T_ptr>::main()
         std::string image_name=image_path+"/"+std::to_string(count)+".jpg";
         std::string tf_name=tf_path+"/"+std::to_string(count)+".csv";
         std::string depthimage_name=depthimage_path+"/"+std::to_string(count)+".jpg";
-        std::string distance_name=distance_path+"/"+std::to_strin(count)+".csv";
+        std::string distance_name=distance_path+"/"+std::to_string(count)+".csv";
 
         bool cloud_flag = loadCloud(cloud, cloud_name);
         bool image_flag = loadImage(image, image_name);
