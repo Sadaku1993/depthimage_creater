@@ -19,7 +19,7 @@ class Projection{
                 cv::Mat &coutput_image);
 };
 
-    template<typename T_p, typename T_c, typename T_ptr>
+template<typename T_p, typename T_c, typename T_ptr>
 void Projection<T_p, T_c, T_ptr>::projection(T_ptr cloud,
         cv::Mat image,
         sensor_msgs::CameraInfo cinfo,

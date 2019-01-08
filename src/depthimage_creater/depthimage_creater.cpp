@@ -83,11 +83,25 @@ class DepthImageCreater{
         bool loadCloud(T_ptr& cloud, std::string file_name);
         bool loadTF(tf::Transform& transform, std::string file_name);
         void main();
-        void depthimage_creater(cv::Mat image, T_ptr map, T_ptr cloud, std::string depthimage_name);
-        void show_transform(std::string parent_frame, std::string child_frame, tf::Transform transform);
-        void transform_pointcloud(T_ptr cloud, T_ptr& trans_cloud, tf::Transform transform, std::string target_frame);
-        bool tflistener(std::string target_frame, std::string source_frame, tf::TransformListener& listener, tf::StampedTransform& transform);
-        void tfbroadcast(std::string target_frame, std::string source_frame, tf::Transform transform);
+        void depthimage_creater(cv::Mat image, 
+                                T_ptr map, 
+                                T_ptr cloud, 
+                                std::string depthimage_name
+                                std::string distance_name);
+        void show_transform(std::string parent_frame,
+                            std::string child_frame, 
+                            tf::Transform transform);
+        void transform_pointcloud(T_ptr cloud, 
+                                  T_ptr& trans_cloud, 
+                                  tf::Transform transform, 
+                                  std::string target_frame);
+        bool tflistener(std::string target_frame, 
+                        std::string source_frame, 
+                        tf::TransformListener& listener, 
+                        tf::StampedTransform& transform);
+        void tfbroadcast(std::string target_frame, 
+                         std::string source_frame, 
+                         tf::Transform transform);
         void camerainfo();
 
         QuickSort<T_p, T_c, T_ptr> qs;
@@ -221,6 +235,7 @@ void DepthImageCreater<T_p, T_c, T_ptr>::main()
     std::string image_path = package_path+"/data/image/"+device;
     std::string tf_path = package_path+"/data/tf/"+device;
     std::string depthimage_path = package_path+"/data/depthimage/"+device;
+    std::string distance_path = package_path+"/data/distance/"+device;
 
     int file_size = file_count_boost(cloud_path.c_str());
     std::cout<<"file_size:"<<file_size<<std::endl;
@@ -244,6 +259,7 @@ void DepthImageCreater<T_p, T_c, T_ptr>::main()
         std::string image_name=image_path+"/"+std::to_string(count)+".jpg";
         std::string tf_name=tf_path+"/"+std::to_string(count)+".csv";
         std::string depthimage_name=depthimage_path+"/"+std::to_string(count)+".jpg";
+        std::string distance_name=distance_path+"/"+std::to_strin(count)+".csv";
 
         bool cloud_flag = loadCloud(cloud, cloud_name);
         bool image_flag = loadImage(image, image_name);
@@ -261,7 +277,7 @@ void DepthImageCreater<T_p, T_c, T_ptr>::main()
             pub_tf.publish(transform_msg);
             
             // depthimage creater
-            depthimage_creater(image, map, cloud, depthimage_name);
+            depthimage_creater(image, map, cloud, depthimage_name, distance_name);
         }
         
         // publish pose
@@ -285,7 +301,8 @@ template<typename T_p, typename T_c, typename T_ptr>
 void DepthImageCreater<T_p, T_c, T_ptr>::depthimage_creater(cv::Mat image,
                                                             T_ptr map,
                                                             T_ptr cloud,
-                                                            std::string depthimage_name)
+                                                            std::string depthimage_name,
+                                                            std::string distance_name)
 {
     std::cout<<"make depthimage ..."<<std::endl;
     
