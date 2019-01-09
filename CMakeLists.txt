@@ -339,6 +339,13 @@ target_link_libraries(polygon_mesh
     ${OpenCV_LIBRARIES}
 )
 
+add_executable(depth_viewer src/viewer/depth_viewer.cpp)
+target_link_libraries(depth_viewer
+    ${catkin_LIBRARIES}
+    ${PCL_LIBRRIES}
+    ${OpenCV_LIBRARIES}
+)
+
 
 
 

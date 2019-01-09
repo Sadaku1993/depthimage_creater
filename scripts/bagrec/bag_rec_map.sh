@@ -24,5 +24,5 @@ echo $LCL &
 echo $RM_HUMAN &
 echo $NORMAL &
 
-# /opt/ros/kinetic/bin/rosbag record $ODOM $IMU $RM_HUMAN -O /home/amsl/$TIME.bag
-/opt/ros/kinetic/bin/rosbag record $ODOM $IMU $NORMAL -O /home/amsl/$TIME.bag
+/opt/ros/kinetic/bin/rosbag record $ODOM $IMU $RM_HUMAN -O /home/amsl/$TIME.bag
+# /opt/ros/kinetic/bin/rosbag record $ODOM $IMU $NORMAL -O /home/amsl/$TIME.bag

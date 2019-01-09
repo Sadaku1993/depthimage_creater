@@ -6,7 +6,7 @@
  * 保存するタイミングは移動量や物体の有無などで判定(今は移動量のみ 20181020)
  * 保存するディレクトリは
  *    Image : /depthimage_creater/image
- *    tf : /depthimage_creater/tf
+ *    tf    : /depthimage_creater/tf
  *    cloud : /depthimage_creater/cloud
  *
  * author:Yudai Sadakuni
@@ -44,6 +44,7 @@ class DataSaver{
         double distance;
         bool odom_flag;
         double threshold;
+        bool first_flag;
 
         std::string package_path;
         std::string device;
@@ -55,7 +56,7 @@ class DataSaver{
         void cloudCallback(const sensor_msgs::PointCloud2::ConstPtr&);
         void odomCallback(const nav_msgs::Odometry::ConstPtr&);
         bool tf_listener();
-        void save_process();
+        bool save_process();
 };
 
 DataSaver::DataSaver()
@@ -70,6 +71,7 @@ DataSaver::DataSaver()
     nh.getParam("device", device); 
     distance = 0;
     odom_flag = false;
+    first_flag = true;
 
     package_path = ros::package::getPath("depthimage_creater");
     count = 0;
@@ -102,6 +104,11 @@ void DataSaver::odomCallback(const nav_msgs::Odometry::ConstPtr& msg)
         old_odom = *msg;
     }
 
+    if(first_flag){
+        bool flag = save_process();
+        if(flag) first_flag = false;
+    }
+
     // しきい値以上移動したらデータを保存
     if(threshold<distance){
         save_process();
@@ -125,14 +132,14 @@ bool DataSaver::tf_listener()
     }
 }
 
-void DataSaver::save_process()
+bool DataSaver::save_process()
 {
     std::cout<<"file_path : "<<package_path<<std::endl;
     std::string file_name = std::to_string(count);
 
     // tf_listener
     bool success = tf_listener();
-    if(!success) return;
+    if(!success) return false;
     double x = transform.getOrigin().x();
     double y = transform.getOrigin().y();
     double z = transform.getOrigin().z();
@@ -146,30 +153,33 @@ void DataSaver::save_process()
     tf::Matrix3x3(tf::Quaternion(q_x, q_y, q_z, q_w)).getRPY(roll ,pitch, yaw);
     printf("tf:x:%.2f y:%.2f z:%.2f roll:%.2f pitch:%.2f yaw:%.2f\n", x, y, z, roll, pitch, yaw);
 
-
-    // save PointCloud
+    // PointCloud
     pcl::PointCloud<pcl::PointXYZ> cloud;
     pcl::fromROSMsg(pc2, cloud);
     cloud.width = 1;
     cloud.height = cloud.points.size();
-    pcl::io::savePCDFile(package_path+"/data/cloud/"+device+"/"+file_name+".pcd", cloud);
 
-    // save Image
+    // Image
     cv_bridge::CvImageConstPtr cv_img_ptr;
     sensor_msgs::ImageConstPtr image_ptr = boost::make_shared<sensor_msgs::Image>(image);
     try{
         cv_img_ptr = cv_bridge::toCvShare(image_ptr);
     }catch (cv_bridge::Exception& e){
         ROS_ERROR("cv_bridge exception: %s", e.what());
-        return;
+        return false;
     }
     cv::Mat cv_image(cv_img_ptr->image.rows, cv_img_ptr->image.cols, cv_img_ptr->image.type());
     cv_image = cv_bridge::toCvShare(image_ptr)->image;
     cv::Mat cv_image_rgb;
     cv::cvtColor(cv_image, cv_image_rgb, CV_BGR2RGB);
-    cv::imwrite(package_path+"/data/image/"+device+"/"+file_name+".jpg", cv_image_rgb);
 
-    // tf
+    // save PointCloud
+    pcl::io::savePCDFile(package_path+"/data/cloud/"+device+"/"+file_name+".pcd", cloud);
+    
+    // save Image
+    cv::imwrite(package_path+"/data/image/"+device+"/"+file_name+".jpg", cv_image_rgb);
+    
+    // save tf
     std::ofstream log;
     log.open(package_path+"/data/tf/"+device+"/"+file_name+".csv" ,std::ios::trunc);
     log << x   << ", " 
@@ -182,6 +192,8 @@ void DataSaver::save_process()
     log.close();
 
     count++;
+
+    return true;
 }
 
 int main(int argc, char** argv)

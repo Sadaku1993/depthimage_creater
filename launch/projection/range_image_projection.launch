@@ -12,6 +12,4 @@
         <remap from="/cloud"    to="/camera/depth_registered/points" />
         <remap from="/cloud/tf" to="/camera/depth_registered/points/tf" />
 	</node>
-
-
 </launch>

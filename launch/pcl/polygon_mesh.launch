@@ -2,23 +2,23 @@
 <!--Mapに対してnoarmal estimationをかけ直す-->
 <launch>
     <node pkg="depthimage_creater" type="polygon_mesh" name="polygon_mesh" output="screen">
-        <!--param name="load_path" type="string" value="/home/amsl"/>
-        <param name="save_path" type="string" value="/home/amsl"/>
-        <param name="pcd_file" type="string" value="0.pcd" />
-        <param name="output_file" type="string" value="0_upsample.pcd" />
-        <param name="vtk_file" type="string" value="0.vtk" />
+        <param name="load_path" type="string" value="$(find depthimage_creater)/map/20190104"/>
+        <param name="save_path" type="string" value="$(find depthimage_creater)/map/20190104"/>
+        <param name="pcd_file" type="string" value="upsample.pcd" />
+        <param name="output_file" type="string" value="upsample_v2.pcd" />
+        <param name="vtk_file" type="string" value="upsample_v2.vtk" />
         <param name="search_radius" type="double" value="0.6" />
-        <param name="gp3_serach_radius" type="double" value="0.25" />
-        <param name="gp3_K" type="double" value="100" /-->
+        <param name="gp3_serach_radius" type="double" value="0.1" />
+        <param name="gp3_K" type="double" value="50" />
 
-        <param name="load_path"     type="string" value="$(find depthimage_creater)/map"/>
+        <!--param name="load_path"     type="string" value="$(find depthimage_creater)/map"/>
         <param name="save_path"     type="string" value="$(find depthimage_creater)/map/upsample"/>
         <param name="pcd_file"      type="string" value="table_scene_lms400_downsample.pcd" />
         <param name="output_file"   type="string" value="table_scene_lms400_polygonmesh.pcd" />
         <param name="vtk_file"      type="string" value="table_scene_lms400_polygonmesh.vtk" />
         <param name="search_radius" type="double" value="0.6" />
         <param name="gp3_serach_radius" type="double" value="0.1" />
-        <param name="gp3_K" type="double" value="50" />
+        <param name="gp3_K" type="double" value="50" /-->
 
     </node>
 </launch>

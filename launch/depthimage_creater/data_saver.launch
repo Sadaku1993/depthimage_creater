@@ -17,7 +17,9 @@
     <include file="$(find depthimage_creater)/launch/republish.launch" />
 
     <!--show map-->
-    <node pkg="pcl_ros" type="pcd_to_pointcloud" name="pcd_to_pointcloud" args="$(find depthimage_creater)/map/sadyne_dense_normal.pcd _frame_id:=/map" />
+    <node pkg="pcl_ros" type="pcd_to_pointcloud" name="pcd_to_pointcloud" args="$(find depthimage_creater)/map/20190104/normal.pcd _frame_id:=/map" />
+
+    <!--node pkg="pcl_ros" type="pcd_to_pointcloud" name="pcd_to_pointcloud" args="$(find depthimage_creater)/map/sadyne_dense_normal.pcd _frame_id:=/map" /-->
     <!--node pkg="pcl_ros" type="pcd_to_pointcloud" name="pcd_to_pointcloud" args="$(find depthimage_creater)/map/sadyne_dense_kai_normal_downsample.pcd _frame_id:=/map" /-->
 
 

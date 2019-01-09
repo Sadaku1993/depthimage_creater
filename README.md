@@ -18,6 +18,7 @@ roscd depthimage_creater/scripts/bagrec
 bag data is saved at here.
 depthimage_creater_20181013.bag
 depthimage_creater_20181024.bag
+depthimage_creater_indoor_20190104.bag
 
 ### Object Detection
 ```
@@ -25,10 +26,10 @@ roslaunch depthimage_creater object_detection.launch
 roscd depthimage_creater/scripts/bagrec
 ./bag_rec_map.sh
 ```
-
 bag data name is .
 20181018-sadakuni.bag
 20181024-rm_human.bag
+
 
 ### Create Map
 Require data

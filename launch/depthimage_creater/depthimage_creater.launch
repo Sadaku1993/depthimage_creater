@@ -5,11 +5,13 @@
     <include file="$(find depthimage_creater)/launch/tf/realsense_dumy.launch" />
  
     <!--show map-->
-    <node pkg="pcl_ros" type="pcd_to_pointcloud" name="pcd_to_pointcloud" args="$(find depthimage_creater)/map/sadyne_dense_normal_upsample.pcd _frame_id:=/map" />
+    <!--node pkg="pcl_ros" type="pcd_to_pointcloud" name="pcd_to_pointcloud" args="$(find depthimage_creater)/map/sadyne_dense_normal_upsample.pcd _frame_id:=/map" /-->
+    <node pkg="pcl_ros" type="pcd_to_pointcloud" name="pcd_to_pointcloud" args="$(find depthimage_creater)/map/20190104/normal.pcd _frame_id:=/map" />
 
     <!--depth image creater-->
     <node pkg="depthimage_creater" type="depthimage_creater_main" name="depthimage_creater_main" output="screen">
-        <param name="map_path" type="string" value="$(find depthimage_creater)/map/sadyne_dense_normal_meshsample.pcd" />
+        <!--param name="map_path" type="string" value="$(find depthimage_creater)/map/sadyne_dense_normal_meshsample.pcd" /-->
+        <param name="map_path" type="string" value="$(find depthimage_creater)/map/20190104/normal.pcd" />
         <param name="device" type="string" value="realsense0" />
         <param name="map_frame" type="string" value="map" />
         <param name="lidar_frame" type="string" value="centerlaser" />

@@ -120,7 +120,7 @@ void Projection<T_p, T_c, T_ptr>::projection(T_ptr cloud,
     for(int y=0;y<image.rows; y++){
         for(int x=0;x<image.cols; x++){
             if(init[y][x]){
-                double value = distance[y][x]/50.0;
+                double value = distance[y][x]/20.0;
                 unsigned char r,g,b;
                 pcl::visualization::FloatImageUtils::getColorForFloat (value, r, g, b);
                 output_image.at<cv::Vec3b>(y, x)[0] = b;
