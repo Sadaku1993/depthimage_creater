@@ -312,6 +312,13 @@ target_link_libraries(quicksort
     ${OpenCV_LIBRARIES}
 )
 
+add_executable(coloring_and_projection src/projection/projection.cpp)
+target_link_libraries(coloring_and_projection
+    ${catkin_LIBRARIES}
+    ${PCL_LIBRRIES}
+    ${OpenCV_LIBRARIES}
+)
+
 add_executable(munkres src/functions/munkres.cpp)
 target_link_libraries(munkres
     ${catkin_LIBRARIES}

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<launch>
+
+    <!--TF-->
+    <node pkg="tf" type="static_transform_publisher" name="sq_lidar2realsense0" args="0.111393 -0.0103084 -0.0137764 0.00335265 -1.11099e-05 -0.00655574 centerlaser camera0/camera_link 100" />
+
+    <!--Transform PointCloud-->
+	<node pkg="sensor_fusion" type="laser_transform_pointcloud" name="realsense_transform">
+        <param name="target_frame" type="string" value="camera0/camera_link" />
+        <remap from="/cloud"    to="/cloud/lcl" />
+        <remap from="/cloud/tf" to="/cloud/lcl/realsense0" />
+	</node>
+
+    <!--Projection-->
+    <node pkg="depthimage_creater" type="coloring_and_projection" name="coloring_and_projection" output="screen">
+        <remap from="/cloud"        to="/cloud/lcl/realsense0" />
+        <remap from="image"         to="/camera0/color/image_raw" />
+        <remap from="/camera_info"  to="/camera0/color/camera_info" />
+    </node>
+    
+</launch>
